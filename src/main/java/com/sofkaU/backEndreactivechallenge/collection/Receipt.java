@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -24,7 +24,7 @@ public class Receipt {
     private String providerId;
 
     @NotNull(message = "Date cannot be null")
-    Date date;
+    LocalDate date;
 
     List<Product> order;
 
