@@ -1,5 +1,6 @@
 package com.sofkaU.backEndreactivechallenge.collection;
 
+import com.sofkaU.backEndreactivechallenge.model.ProductDTO;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,6 +26,6 @@ public class Bill {
     @NotNull(message = "Date cannot be null")
     LocalDate date;
 
-    List<Product> order;
+    List<ProductDTO> order;
 
 }

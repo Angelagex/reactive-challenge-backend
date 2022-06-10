@@ -29,7 +29,7 @@ public class BillRouter {
     public RouterFunction<ServerResponse> saveBillRoute(SaveBillUseCase saveUseCase){
         return route(POST("/bill/save").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(BillDTO.class)
-                        .flatMap(saveUseCase::saveBill)
+                        .flatMap((BillDTO dto1) -> saveUseCase.saveBill(dto1, dto1.getOrder()))
                         .flatMap( dto -> ServerResponse.status(HttpStatus.CREATED)
                                 .contentType(MediaType.APPLICATION_JSON).bodyValue(dto))
         );

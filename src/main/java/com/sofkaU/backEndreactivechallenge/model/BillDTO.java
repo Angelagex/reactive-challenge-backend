@@ -1,10 +1,8 @@
 package com.sofkaU.backEndreactivechallenge.model;
 
-import com.sofkaU.backEndreactivechallenge.collection.Product;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.Id;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -25,5 +23,5 @@ public class BillDTO {
     @NotNull(message = "Date cannot be null")
     LocalDate date;
 
-    List<Product> order;
+    List<ProductDTO> order;
 }

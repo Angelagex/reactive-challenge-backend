@@ -1,9 +1,7 @@
-package com.sofkaU.backEndreactivechallenge.collection;
+package com.sofkaU.backEndreactivechallenge.model;
 
-import com.sofkaU.backEndreactivechallenge.model.ProductDTO;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.RequiredArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,11 +9,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@Document(collection = "receipts")
-public class Receipt {
+@RequiredArgsConstructor
+public class ReceiptDTO {
 
-
-    @Id
     private String id;
 
     @NotBlank(message = "ProviderName is required")
@@ -30,3 +26,4 @@ public class Receipt {
     List<ProductDTO> order;
 
 }
+
