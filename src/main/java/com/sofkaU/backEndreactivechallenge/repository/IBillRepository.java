@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IBillInterface extends ReactiveMongoRepository<Bill, String> {
+public interface IBillRepository extends ReactiveMongoRepository<Bill, String> {
 }
