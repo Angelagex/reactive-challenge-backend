@@ -42,7 +42,7 @@ public class ReceiptRouter {
     public RouterFunction<ServerResponse> saveReceiptRoute(SaveReceiptUseCase saveUseCase){
         return route(POST("/receipt/save").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(ReceiptDTO.class)
-                        .flatMap((ReceiptDTO dto1) -> saveUseCase.saveReceipt(dto1, dto1.getOrder()))
+                        .flatMap((ReceiptDTO dto1) -> saveUseCase.saveReceipt(dto1))
                         .flatMap( dto -> ServerResponse.status(HttpStatus.CREATED)
                                 .contentType(MediaType.APPLICATION_JSON).bodyValue(dto))
         );

@@ -1,17 +1,16 @@
 package com.sofkaU.backEndreactivechallenge;
 
 import com.sofkaU.backEndreactivechallenge.collection.Bill;
-import com.sofkaU.backEndreactivechallenge.mapper.BillMapper;
+import com.sofkaU.backEndreactivechallenge.model.BillDTO;
 import com.sofkaU.backEndreactivechallenge.model.ProductDTO;
 import com.sofkaU.backEndreactivechallenge.repository.IBillRepository;
-import com.sofkaU.backEndreactivechallenge.usecases.GetAllBillsUseCase;
-import org.junit.jupiter.api.BeforeEach;
+import com.sofkaU.backEndreactivechallenge.usecases.SaveBillUseCase;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import reactor.core.publisher.Flux;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDate;
@@ -19,21 +18,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @SpringBootTest
-public class GetAllBillsUseCaseTest {
+public class SaveBillUseCaseTest {
 
-    private GetAllBillsUseCase useCase;
-
-    @Autowired
-    BillMapper mapper;
+    @MockBean
+    private SaveBillUseCase useCase;
 
     @Mock
     IBillRepository repository;
 
-    @BeforeEach
-    void setUp() { useCase = new GetAllBillsUseCase(mapper, repository);}
-
     @Test
-    void getProducts() {
+    void saveBill() {
         ProductDTO product = new ProductDTO();
         product.setId("123");
         product.setDescription("Product Description");
@@ -49,18 +43,14 @@ public class GetAllBillsUseCaseTest {
         //convert String to LocalDate
         LocalDate localDate = LocalDate.parse(date, formatter);
 
-        Bill bill = new Bill();
+        BillDTO bill = new BillDTO();
         bill.setId("456");
         bill.setDate(localDate);
         bill.setClientName("Santiago");
         bill.setVendorName("Sher");
         bill.setOrder(List.of(product));
 
-
-        Mockito.when(repository.findAll()).thenReturn(Flux.just(bill));
-
-        StepVerifier.create(useCase.getAllBill()).expectNextCount(1).verifyComplete();
-        Mockito.verify(repository).findAll();
-
+        StepVerifier.create(Mono.just(Mockito.when(useCase.saveBill(bill)).thenReturn(Mono.just(bill))))
+                .expectNextCount(1).verifyComplete();
     }
 }
