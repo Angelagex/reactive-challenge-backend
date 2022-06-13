@@ -16,11 +16,6 @@ public class SaveProviderUseCase {
     private ProviderMapper providerMapper;
     private IProviderRepository providerRepository;
 
-/*    boolean validate(ProviderDTO dto) {
-        return dto.getProviderId().equals(dto.getProviderId().toString()) && dto.getName().equals(dto.getName().toString())
-                ? true : false;
-    }*/
-
 
     public Mono<ProviderDTO> saveProvider( ProviderDTO dto) {
         return providerRepository.save(providerMapper.convertDTOToEntity().apply(dto))

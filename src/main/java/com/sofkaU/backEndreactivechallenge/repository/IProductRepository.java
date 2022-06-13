@@ -7,6 +7,4 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface IProductRepository extends ReactiveMongoRepository<Product, String> {
-
-    Flux<Product> findProductByProvider();
 }
