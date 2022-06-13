@@ -24,7 +24,7 @@ public class SaveBillUseCase {
 
     public Mono<BillDTO> saveBill(BillDTO dto, List<ProductDTO> products) {
 
-/*        products.stream().map( item -> productMapper.convertEntityToDTO().apply(productRepository.findById(item.getId())).map( item -> productRepository.save())
+/*      products.stream().map( item -> productMapper.convertEntityToDTO().apply(productRepository.findById(item.getId())).map( item -> productRepository.save())
 
         productRepository.findById(item.getId()).map( product -> ))*/
 
